@@ -5,20 +5,31 @@ import { ExternalLink, Github } from 'lucide-react';
 
 const projects = [
   {
+    title: 'Multiple Disease Prediction System',
+    description: 'A Streamlit web app that predicts 21 diseases (Diabetes, Heart Disease, Cancer, Parkinson\'s, Alzheimer\'s & more) using trained ML models. Features an NVIDIA-powered LLM that generates structured care plans with dietary advice, medications, and doctor recommendations.',
+    tags: ['Python', 'Streamlit', 'scikit-learn', 'NVIDIA LLM', 'OpenAI API'],
+    impact: '21 Disease Predictions',
+    category: 'AI / ML',
+    links: {
+      github: 'https://github.com/sharathcherry/mdpcb',
+      live: 'https://mdpcb123.streamlit.app/'
+    }
+  },
+  {
     title: 'CodeAtlas',
     description: 'An AI-powered assistant designed to revolutionize how developers navigate and understand large codebases. It solves the problem of code complexity by providing intelligent, context-aware explanations and navigation.',
     tags: ['React', 'AI Agents', 'AST Parsing', 'Vector DB'],
     impact: 'Reduces onboarding time by 40%',
     category: 'AI',
-    links: { github: 'https://github.com/Abhinaytechie/CodeAtlas', live: 'https://yourcodeatlas.vercel.app/' }
+    links: { github: 'https://github.com/sharathcherry', live: '#' }
   },
   {
     title: 'LinkedIn Automation System',
     description: 'An automated workflow to research current AI Trends from the internet and post it on LinkedIn',
-    tags: ['n8n', 'Groq API', 'linkedin webhooks'],
+    tags: ['n8n', 'Groq API', 'LinkedIn Webhooks'],
     impact: '10x Outreach Efficiency',
     category: 'Automations',
-    links: { github: 'https://github.com/Abhinaytechie/linkedinautomation', live: '#' }
+    links: { github: 'https://github.com/sharathcherry', live: '#' }
   },
   {
     title: 'Research AI',
@@ -26,7 +37,7 @@ const projects = [
     tags: ['React', 'Spring Boot', 'Gemini API', 'MongoDB'],
     impact: 'Accelerates research by 5x',
     category: 'AI',
-    links: { github: 'https://github.com/Abhinaytechie/SmartResearchAi', live: 'https://smart-research-ai.vercel.app/' }
+    links: { github: 'https://github.com/sharathcherry', live: '#' }
   },
   {
     title: 'SQL Agent',
@@ -34,7 +45,7 @@ const projects = [
     tags: ['Python', 'LangChain', 'SQL', 'OpenAI API'],
     impact: '70% Faster Queries',
     category: 'Backend',
-    links: { github: 'https://github.com/Abhinaytechie/Sql_Agent', live: '#' }
+    links: { github: 'https://github.com/sharathcherry', live: '#' }
   }
 ];
 
@@ -208,6 +219,8 @@ export default function Projects() {
                     <span>Live Demo</span>
                   </motion.a>
                 </div>
+
+              
               </div>
 
               {/* Hover Gradient */}
