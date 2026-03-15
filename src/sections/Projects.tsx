@@ -204,6 +204,8 @@ export default function Projects() {
                 <div className="flex gap-4 pt-4">
                   <motion.a
                     href={project.links.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="flex items-center gap-2 text-white/60 hover:text-white text-sm transition-colors duration-300"
                     whileHover={{ x: 4 }}
                   >
@@ -212,6 +214,8 @@ export default function Projects() {
                   </motion.a>
                   <motion.a
                     href={project.links.live}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="flex items-center gap-2 text-white/60 hover:text-white text-sm transition-colors duration-300"
                     whileHover={{ x: 4 }}
                   >
@@ -220,7 +224,59 @@ export default function Projects() {
                   </motion.a>
                 </div>
 
-              
+                {/* Live Browser Window Embed */}
+                {project.links.live !== '#' && (
+                  <motion.div
+                    className="mt-6 rounded-xl overflow-hidden border border-white/15 shadow-2xl"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ delay: 0.6 + index * 0.1, duration: 0.6 }}
+                  >
+                    {/* Browser Chrome */}
+                    <div className="bg-[#1a1a1a] px-4 py-2.5 flex items-center gap-3 border-b border-white/10">
+                      {/* Traffic lights */}
+                      <div className="flex gap-1.5">
+                        <div className="w-3 h-3 rounded-full bg-[#FF5F57]" />
+                        <div className="w-3 h-3 rounded-full bg-[#FEBC2E]" />
+                        <div className="w-3 h-3 rounded-full bg-[#28C840]" />
+                      </div>
+                      {/* Address bar */}
+                      <div className="flex-1 bg-black/40 rounded-md px-3 py-1 flex items-center gap-2">
+                        <div className="w-2 h-2 rounded-full bg-green-400/60" />
+                        <span className="text-white/40 text-xs font-mono truncate">
+                          mdpcb123.streamlit.app
+                        </span>
+                      </div>
+                      {/* Open in new tab */}
+                      <motion.a
+                        href={project.links.live}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-white/30 hover:text-white/80 transition-colors"
+                        whileHover={{ scale: 1.1 }}
+                        title="Open in new tab"
+                      >
+                        <ExternalLink size={13} />
+                      </motion.a>
+                    </div>
+
+                    {/* iFrame */}
+                    <div className="relative bg-black">
+                      <iframe
+                        src={project.links.live}
+                        title={`${project.title} Live Demo`}
+                        width="100%"
+                        height="480"
+                        className="block"
+                        style={{ border: 'none' }}
+                        loading="lazy"
+                        allow="fullscreen"
+                        sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
+                      />
+                    </div>
+                  </motion.div>
+                )}
+
               </div>
 
               {/* Hover Gradient */}
