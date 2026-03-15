@@ -260,18 +260,17 @@ export default function Projects() {
                       </motion.a>
                     </div>
 
-                    {/* iFrame */}
-                    <div className="relative bg-black">
+                    {/* iFrame — Streamlit embed mode strips X-Frame headers */}
+                    <div className="relative bg-[#f0f2f6]">
                       <iframe
-                        src={project.links.live}
+                        src={`${project.links.live}?embed=true&embed_options=light_theme`}
                         title={`${project.title} Live Demo`}
                         width="100%"
-                        height="480"
-                        className="block"
+                        height="520"
+                        className="block w-full"
                         style={{ border: 'none' }}
                         loading="lazy"
-                        allow="fullscreen"
-                        sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
+                        allow="fullscreen; clipboard-write"
                       />
                     </div>
                   </motion.div>
