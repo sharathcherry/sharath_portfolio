@@ -16,12 +16,15 @@ const projects = [
     }
   },
   {
-    title: 'CodeAtlas',
-    description: 'An AI-powered assistant designed to revolutionize how developers navigate and understand large codebases. It solves the problem of code complexity by providing intelligent, context-aware explanations and navigation.',
-    tags: ['React', 'AI Agents', 'AST Parsing', 'Vector DB'],
-    impact: 'Reduces onboarding time by 40%',
-    category: 'AI',
-    links: { github: 'https://github.com/sharathcherry', live: '#' }
+    title: 'Vani — Jan Sahayak',
+    description: 'A multilingual AI voice helpline that lets citizens query 500+ Indian government welfare schemes via phone call or WhatsApp in their native language – bridging the digital literacy gap.',
+    tags: ['AWS Bedrock', 'AWS Lambda', 'Qdrant', 'Twilio', 'Streamlit'],
+    impact: 'Voice AI for 500+ Govt Schemes',
+    category: 'AI / Voice Apps',
+    links: {
+      github: 'https://github.com/sharathcherry/vani-jan-sahayak',
+      live: 'https://vani-jan-sahayaka-demo.streamlit.app/'
+    }
   },
   {
     title: 'LinkedIn Automation System',
@@ -244,7 +247,7 @@ export default function Projects() {
                       <div className="flex-1 bg-black/40 rounded-md px-3 py-1 flex items-center gap-2">
                         <div className="w-2 h-2 rounded-full bg-green-400/60" />
                         <span className="text-white/40 text-xs font-mono truncate">
-                          mdpcb123.streamlit.app
+                          {project.links.live.replace('https://', '').replace(/\/$/, '')}
                         </span>
                       </div>
                       {/* Open in new tab */}
