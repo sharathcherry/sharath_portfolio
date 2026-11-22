@@ -13,11 +13,22 @@ export default function Contact() {
     message: '',
   });
   const [focusedField, setFocusedField] = useState<string | null>(null);
+  const [submitState, setSubmitState] = useState<'idle' | 'sending' | 'sent'>('idle');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    alert('Thank you for your message! I will get back to you soon.');
-    setFormData({ name: '', email: '', subject: '', message: '' });
+    setSubmitState('sending');
+    // Build mailto link with form data
+    const subject = encodeURIComponent(formData.subject || `Portfolio Contact from ${formData.name}`);
+    const body = encodeURIComponent(
+      `Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`
+    );
+    window.open(`mailto:ksharathchandrawork@gmail.com?subject=${subject}&body=${body}`, '_blank');
+    setTimeout(() => {
+      setSubmitState('sent');
+      setFormData({ name: '', email: '', subject: '', message: '' });
+      setTimeout(() => setSubmitState('idle'), 3000);
+    }, 500);
   };
 
   const containerVariants = {
@@ -42,6 +53,21 @@ export default function Contact() {
       },
     },
   };
+
+  const socialLinks = [
+    {
+      href: 'https://github.com/sharathcherry',
+      icon: <Github size={20} />,
+      label: 'GitHub',
+      handle: '@sharathcherry'
+    },
+    {
+      href: 'https://www.linkedin.com/in/sharathchandra2005',
+      icon: <Linkedin size={20} />,
+      label: 'LinkedIn',
+      handle: 'sharathchandra2005'
+    }
+  ];
 
   return (
     <section id="contact" className="relative bg-black py-32 overflow-hidden">
@@ -197,24 +223,44 @@ export default function Contact() {
 
               <motion.button
                 type="submit"
-                className="group inline-flex items-center gap-3 px-8 py-4 bg-white text-black text-sm uppercase tracking-[0.1em] font-medium 
-                         hover:bg-white/90 transition-all duration-300"
-                whileHover={{ scale: 1.02 }}
+                disabled={submitState === 'sending'}
+                className={`group inline-flex items-center gap-3 px-8 py-4 text-sm uppercase tracking-[0.1em] font-medium 
+                         transition-all duration-300 ${
+                           submitState === 'sent'
+                             ? 'bg-green-500 text-white'
+                             : 'bg-white text-black hover:bg-white/90'
+                         }`}
+                whileHover={{ scale: submitState === 'idle' ? 1.02 : 1 }}
                 whileTap={{ scale: 0.98 }}
               >
-                <motion.span
-                  animate={{ x: [0, 4, 0] }}
-                  transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-                >
-                  <Send size={16} />
-                </motion.span>
-                Send Message
+                {submitState === 'sent' ? (
+                  <>✓ Message Sent!</>
+                ) : submitState === 'sending' ? (
+                  <>
+                    <motion.div
+                      className="w-4 h-4 border-2 border-black/30 border-t-black rounded-full"
+                      animate={{ rotate: 360 }}
+                      transition={{ duration: 0.8, repeat: Infinity, ease: "linear" }}
+                    />
+                    Opening Email...
+                  </>
+                ) : (
+                  <>
+                    <motion.span
+                      animate={{ x: [0, 4, 0] }}
+                      transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                    >
+                      <Send size={16} />
+                    </motion.span>
+                    Send Message
+                  </>
+                )}
               </motion.button>
             </form>
           </motion.div>
 
           {/* Right Column - Info */}
-          <motion.div variants={itemVariants} className="space-y-12">
+          <motion.div variants={itemVariants} className="space-y-10">
             {/* Contact Info */}
             <div className="space-y-6">
               <h3 className="text-white/40 text-sm uppercase tracking-[0.2em] font-medium">
@@ -268,33 +314,34 @@ export default function Contact() {
               </div>
             </div>
 
-            {/* Social Links */}
-            <div className="space-y-6">
+            {/* Social Links — with labels */}
+            <div className="space-y-4">
               <h3 className="text-white/40 text-sm uppercase tracking-[0.2em] font-medium">
                 Follow Me Online
               </h3>
 
-              <div className="flex gap-4">
-                <motion.a
-                  href="https://github.com/sharathcherry"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group w-12 h-12 border border-white/20 flex items-center justify-center hover:border-white hover:bg-white/5 transition-all duration-300"
-                  whileHover={{ scale: 1.1, y: -4 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Github size={20} className="text-white/60 group-hover:text-white transition-colors" />
-                </motion.a>
-                <motion.a
-                  href="https://www.linkedin.com/in/sharathchandra2005"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group w-12 h-12 border border-white/20 flex items-center justify-center hover:border-white hover:bg-white/5 transition-all duration-300"
-                  whileHover={{ scale: 1.1, y: -4 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Linkedin size={20} className="text-white/60 group-hover:text-white transition-colors" />
-                </motion.a>
+              <div className="flex flex-col gap-3">
+                {socialLinks.map((social) => (
+                  <motion.a
+                    key={social.label}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-center gap-4 p-4 border border-white/10 hover:border-white/30 transition-all duration-300"
+                    whileHover={{ x: 8 }}
+                  >
+                    <div className="w-10 h-10 border border-white/20 flex items-center justify-center group-hover:border-white/50 transition-colors">
+                      <span className="text-white/60 group-hover:text-white transition-colors">
+                        {social.icon}
+                      </span>
+                    </div>
+                    <div>
+                      <p className="text-white text-sm font-medium">{social.label}</p>
+                      <p className="text-white/40 text-xs">{social.handle}</p>
+                    </div>
+                    <ArrowUpRight size={16} className="ml-auto text-white/30 group-hover:text-white transition-colors" />
+                  </motion.a>
+                ))}
               </div>
             </div>
 

@@ -62,12 +62,17 @@ const experiences = [
   },
 ];
 
-const education = [
+const education: Array<{
+  degree: string;
+  institution: string;
+  period: string;
+  grade?: string;
+  icon: typeof GraduationCap;
+}> = [
   {
     degree: 'B.Tech in Computer Science & Engineering (AIML)',
     institution: 'Malla Reddy University, Hyderabad',
     period: 'Jan 2022 – Present',
-    grade: 'CGPA: 9.11',
     icon: GraduationCap,
   },
 
@@ -248,9 +253,11 @@ export default function Experience() {
                         <span className="text-white/40 text-sm font-mono">
                           {edu.period}
                         </span>
-                        <span className="px-2 py-1 bg-white/10 text-white/80 text-xs font-medium">
-                          {edu.grade}
-                        </span>
+                        {edu.grade && (
+                          <span className="px-2 py-1 bg-white/10 text-white/80 text-xs font-medium">
+                            {edu.grade}
+                          </span>
+                        )}
                       </div>
                       <h4 className="text-white text-lg font-semibold">
                         {edu.degree}
@@ -270,13 +277,6 @@ export default function Experience() {
                 Achievements
               </h3>
               <div className="space-y-4">
-                <motion.div
-                  className="p-4 border border-white/10 hover:border-white/30 transition-all duration-300"
-                  whileHover={{ x: 4 }}
-                >
-                  <p className="text-white text-sm font-medium">100+ DSA Problems</p>
-                  <p className="text-white/50 text-xs mt-1">Solved on LeetCode and GeeksforGeeks</p>
-                </motion.div>
                 <motion.div
                   className="p-4 border border-white/10 hover:border-white/30 transition-all duration-300"
                   whileHover={{ x: 4 }}

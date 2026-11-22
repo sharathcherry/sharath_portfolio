@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { Brain, Bot, BookOpen, Database, Network, LineChart } from 'lucide-react';
+import { Brain, Bot, BookOpen, Network, LineChart } from 'lucide-react';
 
 const TechIcon = ({ src, className = "w-6 h-6 object-contain" }: { src: string, className?: string }) => (
   <img src={src} alt="Tech logo" className={className} />
@@ -86,7 +86,7 @@ export default function TechStack() {
   };
 
   return (
-    <section id="tech" className="relative bg-black py-32 overflow-hidden">
+    <section id="tech" className="relative bg-black pt-24 pb-16 overflow-hidden">
       {/* Background Gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-white/[0.02] to-transparent" />
 
@@ -186,3 +186,4 @@ export default function TechStack() {
     </section>
   );
 }
+

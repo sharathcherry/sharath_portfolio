@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "test:e2e": "npx playwright test",
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
@@ -43,7 +44,7 @@
     "cmdk": "^1.1.1",
     "date-fns": "^4.1.0",
     "embla-carousel-react": "^8.6.0",
-    "framer-motion": "^12.34.3",
+    "framer-motion": "^12.38.0",
     "input-otp": "^1.4.2",
     "lucide-react": "^0.562.0",
     "next-themes": "^0.4.6",
@@ -62,6 +63,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
+    "@playwright/test": "^1.59.1",
     "@types/node": "^24.10.1",
     "@types/react": "^19.2.5",
     "@types/react-dom": "^19.2.3",
@@ -79,5 +81,18 @@
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.46.4",
     "vite": "^7.2.4"
-  }
+  },
+  "description": "This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.",
+  "main": "eslint.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sharathcherry/sharath_portfolio.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sharathcherry/sharath_portfolio/issues"
+  },
+  "homepage": "https://github.com/sharathcherry/sharath_portfolio#readme"
 }

@@ -83,10 +83,10 @@ export default function About() {
                 animate={{ opacity: [0.3, 0.6, 0.3] }}
                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
               >
-                About
+                Who I Am
               </motion.p>
               <h2 className="text-white text-[clamp(2.5rem,5vw,4rem)] font-bold leading-tight">
-                Me
+                About Me
               </h2>
             </motion.div>
 
@@ -175,32 +175,6 @@ export default function About() {
               ))}
             </div>
 
-            {/* Stats */}
-            <motion.div variants={itemVariants} className="grid grid-cols-2 gap-6 pt-8">
-              {[
-                { value: '6+', label: 'Projects' },
-                { value: '9.11', label: 'CGPA' },
-                { value: '6+', label: 'Months Exp' },
-                { value: '100+', label: 'DSA Problems' },
-              ].map((stat, index) => (
-                <motion.div
-                  key={stat.label}
-                  className="space-y-2"
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <motion.p
-                    className="text-white text-4xl font-bold"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ delay: 0.8 + index * 0.1, duration: 0.5 }}
-                  >
-                    {stat.value}
-                  </motion.p>
-                  <p className="text-white/40 text-sm uppercase tracking-[0.1em]">{stat.label}</p>
-                </motion.div>
-              ))}
-            </motion.div>
           </div>
         </motion.div>
       </div>

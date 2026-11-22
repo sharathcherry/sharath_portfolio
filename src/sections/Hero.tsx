@@ -4,20 +4,20 @@ import { ArrowDownRight } from 'lucide-react';
 // Animated background particles
 const FloatingParticle = ({ delay, x, y, size }: { delay: number; x: string; y: string; size: number }) => (
   <motion.div
-    className="absolute rounded-full bg-white/10"
+    className="absolute rounded-full bg-[rgb(var(--color-primary-400))/10]"
     style={{
       width: size,
       height: size,
       left: x,
       top: y,
+      willChange: 'transform, opacity'
     }}
     animate={{
-      y: [0, -30, 0],
-      opacity: [0.1, 0.3, 0.1],
-      scale: [1, 1.2, 1],
+      y: [0, -20, 0],
+      opacity: [0.1, 0.2, 0.1],
     }}
     transition={{
-      duration: 4 + Math.random() * 2,
+      duration: 10 + Math.random() * 5,
       delay,
       repeat: Infinity,
       ease: "easeInOut",
@@ -29,21 +29,22 @@ const FloatingParticle = ({ delay, x, y, size }: { delay: number; x: string; y: 
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen bg-black overflow-hidden flex items-center">
+    <section className="relative min-h-screen bg-[rgb(var(--color-background-dark))] overflow-hidden flex items-center">
       {/* Animated Background Grid */}
       <div className="absolute inset-0 opacity-[0.03]">
         <motion.div
-          className="absolute inset-0"
+          className="absolute inset-0 opacity-50"
           style={{
-            backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), 
-                              linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
-            backgroundSize: '60px 60px',
+            backgroundImage: `linear-gradient(rgba(var(--color-primary-400), 0.06) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(var(--color-secondary-500), 0.06) 1px, transparent 1px)`,
+            backgroundSize: '100px 100px',
+            willChange: 'background-position'
           }}
           animate={{
-            backgroundPosition: ['0px 0px', '60px 60px'],
+            backgroundPosition: ['0px 0px', '100px 100px'],
           }}
           transition={{
-            duration: 20,
+            duration: 40,
             repeat: Infinity,
             ease: "linear",
           }}
@@ -104,32 +105,35 @@ export default function Hero() {
       />
 
       <div className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-8 py-32 w-full">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
-          {/* Left Column - Main Content */}
+        <div className="max-w-3xl">
+          {/* Main Content */}
           <div className="space-y-8">
-            {/* Title */}
+            {/* Title with ultra-fast animations */}
             <div className="space-y-2">
               <motion.h1
-                initial={{ opacity: 0, y: 60 }}
+                initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                className="text-white text-[clamp(3rem,10vw,8rem)] font-black leading-[0.9] tracking-tight"
+                transition={{ delay: 0.1, duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+                style={{ willChange: 'opacity, transform' }}
+                className="text-[rgb(var(--color-text-primary))] text-[clamp(3rem,10vw,8rem)] font-black leading-[0.9] tracking-tight"
               >
                 Hello.
               </motion.h1>
               <motion.h1
-                initial={{ opacity: 0, y: 60 }}
+                initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.35, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                className="text-white text-[clamp(3rem,10vw,8rem)] font-black leading-[0.9] tracking-tight"
+                transition={{ delay: 0.15, duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+                style={{ willChange: 'opacity, transform' }}
+                className="text-[rgb(var(--color-text-primary))] text-[clamp(3rem,10vw,8rem)] font-black leading-[0.9] tracking-tight"
               >
                 I am
               </motion.h1>
               <motion.h1
-                initial={{ opacity: 0, y: 60 }}
+                initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                className="text-white text-[clamp(3rem,10vw,8rem)] font-black leading-[0.9] tracking-tight"
+                transition={{ delay: 0.2, duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+                style={{ willChange: 'opacity, transform' }}
+                className="text-[rgb(var(--color-text-primary))] text-[clamp(3rem,10vw,8rem)] font-black leading-[0.9] tracking-tight"
               >
                 Sharath Chandra
               </motion.h1>
@@ -148,30 +152,33 @@ export default function Hero() {
               >
                 <ArrowDownRight className="w-8 h-8 text-white mt-1" strokeWidth={1.5} />
               </motion.div>
-              <div className="space-y-1">
+              <div className="space-y-2">
                 <motion.p
-                  className="text-white/90 text-lg font-medium"
-                  initial={{ opacity: 0, x: -10 }}
+                  className="text-[rgb(var(--color-text-secondary))] text-lg font-medium hover:text-[rgb(var(--color-text-primary))] transition-colors duration-200"
+                  initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.7, duration: 0.4 }}
+                  transition={{ delay: 0.3, duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+                  style={{ willChange: 'opacity, transform' }}
                 >
-                  AI Developer
+                  🤖 AI Developer
                 </motion.p>
                 <motion.p
-                  className="text-white/90 text-lg font-medium"
-                  initial={{ opacity: 0, x: -10 }}
+                  className="text-[rgb(var(--color-text-secondary))] text-lg font-medium hover:text-[rgb(var(--color-text-primary))] transition-colors duration-200"
+                  initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.8, duration: 0.4 }}
+                  transition={{ delay: 0.35, duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+                  style={{ willChange: 'opacity, transform' }}
                 >
-                  Full-Stack Engineer
+                  💻 Full-Stack Engineer
                 </motion.p>
                 <motion.p
-                  className="text-white/90 text-lg font-medium"
-                  initial={{ opacity: 0, x: -10 }}
+                  className="text-[rgb(var(--color-text-secondary))] text-lg font-medium hover:text-[rgb(var(--color-text-primary))] transition-colors duration-200"
+                  initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.9, duration: 0.4 }}
+                  transition={{ delay: 0.4, duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+                  style={{ willChange: 'opacity, transform' }}
                 >
-                  Freelance
+                  🚀 Freelance
                 </motion.p>
               </div>
             </motion.div>
@@ -197,82 +204,47 @@ export default function Hero() {
             >
               <motion.a
                 href="#contact"
-                className="inline-flex items-center px-6 py-3 bg-white text-black text-sm uppercase tracking-[0.1em] font-medium hover:bg-white/90 transition-colors duration-300"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+                className="inline-flex items-center px-6 py-3 bg-[rgb(var(--color-primary-400))] text-[rgb(var(--color-text-dark))] text-sm uppercase tracking-[0.1em] font-medium hover:bg-[rgb(var(--color-primary-500))] transition-colors duration-200"
+                whileHover={{ scale: 1.02, transition: { duration: 0.15 } }}
+                whileTap={{ scale: 0.98, transition: { duration: 0.1 } }}
+                style={{ willChange: 'transform' }}
               >
                 Contact Me
               </motion.a>
               <motion.a
                 href="#projects"
-                className="inline-flex items-center px-6 py-3 border border-white/30 text-white text-sm uppercase tracking-[0.1em] font-medium hover:border-white hover:bg-white/5 transition-all duration-300"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+                className="inline-flex items-center px-6 py-3 border border-[rgb(var(--color-primary-400)/0.3)] text-[rgb(var(--color-text-primary))] text-sm uppercase tracking-[0.1em] font-medium hover:border-[rgb(var(--color-primary-400))] hover:bg-[rgb(var(--color-primary-400)/0.1)] transition-all duration-200"
+                whileHover={{ scale: 1.02, transition: { duration: 0.15 } }}
+                whileTap={{ scale: 0.98, transition: { duration: 0.1 } }}
+                style={{ willChange: 'transform' }}
               >
                 View Work
               </motion.a>
             </motion.div>
           </div>
-
-          {/* Right Column - Core Technologies */}
-          <div className="space-y-6 lg:pl-12">
-            {/* Availability Badge */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.2, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              className="flex items-center gap-4 p-4 border border-white/10"
-            >
-              <motion.span
-                className="w-3 h-3 bg-green-500 rounded-full"
-                animate={{ scale: [1, 1.2, 1], opacity: [1, 0.7, 1] }}
-                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-              />
-              <div>
-                <p className="text-white text-sm font-medium">Available for Projects</p>
-                <p className="text-white/40 text-xs">Open to freelance & full-time opportunities</p>
-              </div>
-            </motion.div>
-
-            {/* Tech Stack */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.3, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              className="space-y-3"
-            >
-              <p className="text-white/40 text-xs uppercase tracking-[0.2em]">Core Technologies</p>
-              <div className="flex flex-wrap gap-2">
-                {['Python', 'LangChain', 'React', 'FastAPI', 'VectorDB', 'PostgreSQL', 'MongoDB', 'REST APIs', 'Machine Learning', 'LLM', 'RAG', 'Qdrant', 'AWS', 'Azure'].map((tech, i) => (
-                  <motion.span
-                    key={tech}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 1.4 + i * 0.04, duration: 0.3 }}
-                    whileHover={{ scale: 1.1, borderColor: "rgba(255,255,255,0.4)" }}
-                    className="px-3 py-1.5 border border-white/15 text-white/60 text-xs font-mono hover:text-white/80 transition-colors"
-                  >
-                    {tech}
-                  </motion.span>
-                ))}
-              </div>
-            </motion.div>
-          </div>
         </div>
       </div>
 
-      {/* Scroll Indicator */}
+      {/* Optimized Scroll Indicator */}
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 2, duration: 1 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1, duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+        style={{ willChange: 'opacity, transform' }}
       >
         <motion.div
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-          className="w-[1px] h-16 bg-gradient-to-b from-white/50 to-transparent"
+          className="w-[2px] h-10 bg-[rgb(var(--color-primary-400))] rounded-full"
         />
+        <motion.p
+          animate={{ opacity: [0.5, 1, 0.5] }}
+          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+          className="text-[rgb(var(--color-text-secondary))] text-xs uppercase tracking-[0.2em] font-medium"
+        >
+          Scroll Down
+        </motion.p>
       </motion.div>
     </section>
   );
