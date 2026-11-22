@@ -475,8 +475,6 @@ export default function ChatBot() {
               className="relative flex items-center justify-center"
             >
               <MessageCircle size={24} />
-              {/* Pulsing indicator */}
-              <span className="absolute -top-1 -right-1 w-3.5 h-3.5 bg-emerald-400 border-2 border-white rounded-full animate-pulse" />
             </motion.div>
           )}
         </AnimatePresence>
@@ -507,8 +505,7 @@ export default function ChatBot() {
                       AI
                     </span>
                   </div>
-                  <p className="text-white/40 text-xs flex items-center gap-1">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block animate-pulse" />
+                  <p className="text-white/40 text-xs">
                     Sharath's Assistant · Online
                   </p>
                 </div>
