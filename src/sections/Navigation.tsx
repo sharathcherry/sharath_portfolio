@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import ThemeToggle from '../components/ui/theme-toggle';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 
@@ -85,7 +84,6 @@ export default function Navigation() {
               >
                 Hire Me
               </motion.a>
-              <ThemeToggle />
             </div>
 
             {/* Mobile Menu Button */}

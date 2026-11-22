@@ -13,7 +13,7 @@ import './styles/colors.css';
 
 function App() {
   return (
-    <ThemeProvider attribute="class">
+    <ThemeProvider attribute="class" defaultTheme="dark" forcedTheme="dark">
       <LazyMotion features={domAnimation} strict>
         <div className="min-h-screen bg-[rgb(var(--color-background-dark))] text-[rgb(var(--color-text-primary))]">
           <Navigation />
