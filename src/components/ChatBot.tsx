@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MessageCircle, X, Send, Sparkles } from 'lucide-react';
+import { MessageCircle, X, Send, Bot, Sparkles } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { GoogleGenerativeAI } from "@google/generative-ai";
@@ -12,7 +12,7 @@ interface Message {
 
 // Portfolio knowledge base for the AI model
 const PORTFOLIO_CONTEXT = `
-You are Cherry 🍒, the personal AI assistant for Katukojwala Sharath Chandra's portfolio.
+You are Cherry, the personal AI assistant for Katukojwala Sharath Chandra's portfolio.
 You are warm, intelligent, technically savvy, witty, and concise.
 Sharath Chandra is an AI Engineer and Full-Stack Developer based in Hyderabad, India.
 
@@ -62,7 +62,7 @@ Experience:
 - Google Developer Groups (GDG) active member & SSOC contributor (15+ PRs merged).
 
 Guidelines:
-- Identify yourself as Cherry 🍒.
+- Identify yourself as Cherry. Do NOT use cherry fruit emojis.
 - Keep responses friendly, conversational, concise, and formatted with clean markdown.
 `;
 
@@ -72,7 +72,7 @@ function getCherryResponse(userInput: string, _history: Message[]): string {
 
   // 1. Casual Greetings & Hello
   if (/^(hi|hello|hey|heya|yo|sup|howdy|hola|namaste|greetings)\b/i.test(q) || q === "hi" || q === "hello") {
-    return `Hey there! 👋 I'm **Cherry** 🍒, Sharath's AI assistant. 
+    return `Hey there! 👋 I'm **Cherry**, Sharath's AI assistant.
 
 Great to have you here! How can I help you today? You can ask me about:
 - ⚡ **Flagship Projects** (*FrugalRoute*, *Vani*, *Multiple Disease Prediction*, *MindWell*)
@@ -92,7 +92,7 @@ Great to have you here! How can I help you today? You can ask me about:
     q.includes("what's up") ||
     q.includes("how do you do")
   ) {
-    return `I'm doing wonderful, thanks for asking! 🍒 Ready to show you around Sharath's engineering work. 
+    return `I'm doing wonderful, thanks for asking! Ready to show you around Sharath's engineering work.
 
 Are you looking to explore his **LLM caching & routing engine (FrugalRoute)**, his **voice RAG platform (Vani)**, or are you interested in hiring him for an AI role?`;
   }
@@ -107,18 +107,18 @@ Are you looking to explore his **LLM caching & routing engine (FrugalRoute)**, h
     q.includes("your name") ||
     q === "cherry"
   ) {
-    return `I'm **Cherry** 🍒! 
+    return `I'm **Cherry**!
 
-I'm Sharath Chandra's personal portfolio AI assistant. I'm named after his developer handle, **sharathcherry**. 
+I'm Sharath Chandra's personal portfolio AI assistant, named after his developer handle, **sharathcherry**.
 
 I can give you deep technical dives into his projects, explain his architectures, or connect you directly with him!`;
   }
 
   // 4. "Why Cherry"
   if (q.includes("why cherry") || q.includes("why are you called cherry") || q.includes("name cherry")) {
-    return `Sharath's GitHub handle and community alias is **[sharathcherry](https://github.com/sharathcherry)**! 
+    return `Sharath's GitHub handle and community alias is **[sharathcherry](https://github.com/sharathcherry)**!
 
-When he designed me to represent his portfolio, he named me **Cherry** 🍒 as a playful nod to his online identity.`;
+When he designed me to represent his portfolio, he named me **Cherry** after his handle.`;
   }
 
   // 5. "Who is Sharath" / Bio / About him
@@ -132,7 +132,7 @@ When he designed me to represent his portfolio, he named me **Cherry** 🍒 as a
     q.includes("bio") ||
     q.includes("background")
   ) {
-    return `**Katukojwala Sharath Chandra** is an **AI Engineer & Full-Stack Developer** based in Hyderabad, India. 
+    return `**Katukojwala Sharath Chandra** is an **AI Engineer & Full-Stack Developer** based in Hyderabad, India.
 
 He specializes in:
 - ⚡ **LLMOps & High-Performance Routing:** Building dynamic SLM/cloud routing engines and semantic vector caches (**FrugalRoute**).
@@ -337,19 +337,19 @@ Speaking of deep learning, would you like to see how Sharath implements semantic
 
   // 16. Gratitude & Pleasantries
   if (q.includes("thank") || q.includes("thanks") || q.includes("thx") || q.includes("appreciate")) {
-    return `You're very welcome! 😊 Feel free to ask if there's anything else you'd like to discover about Sharath's projects or skills. 🍒`;
+    return `You're very welcome! Feel free to ask if there's anything else you'd like to discover about Sharath's projects or skills.`;
   }
 
   if (q.includes("cool") || q.includes("awesome") || q.includes("great") || q.includes("nice") || q.includes("good")) {
-    return `Thanks! Sharath takes a lot of pride in building production-grade AI systems. Let me know if you want to inspect any code repositories or talk about a collaboration! 🍒`;
+    return `Thanks! Sharath takes a lot of pride in building production-grade AI systems. Let me know if you want to inspect any code repositories or talk about a collaboration!`;
   }
 
   if (q.includes("bye") || q.includes("goodbye") || q.includes("see ya") || q.includes("cya")) {
-    return `Thanks for stopping by Sharath's portfolio! Have an amazing day ahead, and don't hesitate to connect on [LinkedIn](https://linkedin.com/in/sharathchandra2005) or via [Email](mailto:ksharathchandrawork@gmail.com). 👋🍒`;
+    return `Thanks for stopping by Sharath's portfolio! Have an amazing day ahead, and don't hesitate to connect on [LinkedIn](https://linkedin.com/in/sharathchandra2005) or via [Email](mailto:ksharathchandrawork@gmail.com). 👋`;
   }
 
   // 17. Conversational Fallback
-  return `I'm **Cherry** 🍒, Sharath's AI companion! While I might not have a direct answer for "${userInput.slice(0, 50)}", I know everything about Sharath's work.
+  return `I'm **Cherry**, Sharath's AI companion! While I might not have a direct answer for "${userInput.slice(0, 50)}", I know everything about Sharath's work.
 
 Here are a few things you can ask me:
 - *"Tell me about FrugalRoute"*
@@ -392,7 +392,7 @@ export default function ChatBot() {
   const [messages, setMessages] = useState<Message[]>([
     {
       role: 'assistant',
-      content: "Hi! I'm **Cherry** 🍒, Sharath's AI assistant. Ask me anything about his projects, skills, experience, or how to get in touch!"
+      content: "Hi! I'm **Cherry**, Sharath's AI assistant. Ask me anything about his projects, skills, experience, or how to get in touch!"
     }
   ]);
   const [input, setInput] = useState('');
@@ -447,7 +447,7 @@ export default function ChatBot() {
         onClick={() => setIsOpen(!isOpen)}
         aria-label={isOpen ? "Close Cherry Chat" : "Open Cherry Chat"}
         type="button"
-        className="fixed bottom-6 right-6 z-50 w-14 h-14 bg-gradient-to-tr from-rose-500 to-red-600 text-white rounded-full flex items-center justify-center shadow-xl hover:shadow-red-500/30 transition-all duration-300"
+        className="fixed bottom-6 right-6 z-50 w-14 h-14 bg-white text-black rounded-full flex items-center justify-center shadow-2xl hover:bg-white/90 transition-all duration-300"
         whileHover={{ scale: 1.08 }}
         whileTap={{ scale: 0.95 }}
         initial={{ opacity: 0, y: 20 }}
@@ -470,13 +470,13 @@ export default function ChatBot() {
               key="open"
               initial={{ rotate: 90, opacity: 0 }}
               animate={{ rotate: 0, opacity: 1 }}
-              exit={{ rotate: -90, opacity: 0 }}
+              exit={{ rotate: 90, opacity: 0 }}
               transition={{ duration: 0.2 }}
               className="relative flex items-center justify-center"
             >
               <MessageCircle size={24} />
               {/* Pulsing indicator */}
-              <span className="absolute -top-1 -right-1 w-3.5 h-3.5 bg-emerald-400 border-2 border-black rounded-full animate-pulse" />
+              <span className="absolute -top-1 -right-1 w-3.5 h-3.5 bg-emerald-400 border-2 border-white rounded-full animate-pulse" />
             </motion.div>
           )}
         </AnimatePresence>
@@ -497,13 +497,13 @@ export default function ChatBot() {
             {/* Header */}
             <div className="flex items-center justify-between p-3.5 border-b border-white/10 bg-white/[0.04]">
               <div className="flex items-center gap-2.5">
-                <div className="w-9 h-9 rounded-full bg-gradient-to-tr from-rose-500 to-red-600 flex items-center justify-center shadow-inner">
-                  <span className="text-base select-none">🍒</span>
+                <div className="w-9 h-9 rounded-full bg-white/10 border border-white/15 flex items-center justify-center shadow-inner">
+                  <Bot size={18} className="text-white" />
                 </div>
                 <div>
                   <div className="flex items-center gap-1.5">
                     <p className="text-white text-sm font-bold tracking-wide">Cherry</p>
-                    <span className="px-1.5 py-0.2 bg-rose-500/20 text-rose-300 text-[10px] font-medium rounded-full border border-rose-500/30">
+                    <span className="px-1.5 py-0.2 bg-white/10 text-white/80 text-[10px] font-medium rounded-full border border-white/15">
                       AI
                     </span>
                   </div>
@@ -535,7 +535,7 @@ export default function ChatBot() {
                   <div
                     className={`max-w-[88%] p-3.5 rounded-2xl ${
                       message.role === 'user'
-                        ? 'bg-gradient-to-r from-rose-500 to-red-600 text-white rounded-br-xs shadow-md'
+                        ? 'bg-white text-black font-medium rounded-br-xs shadow-md'
                         : 'bg-white/10 text-white/95 border border-white/10 rounded-bl-xs'
                     }`}
                   >
@@ -556,21 +556,21 @@ export default function ChatBot() {
                 >
                   <div className="bg-white/10 border border-white/10 px-4 py-2.5 rounded-2xl rounded-bl-xs flex items-center gap-1.5">
                     <span className="text-xs text-white/50 mr-1 flex items-center gap-1">
-                      <Sparkles size={12} className="text-rose-400 animate-spin" />
+                      <Sparkles size={12} className="text-white/70 animate-spin" />
                       Cherry is thinking
                     </span>
                     <motion.span
-                      className="w-1.5 h-1.5 bg-rose-400 rounded-full"
+                      className="w-1.5 h-1.5 bg-white/60 rounded-full"
                       animate={{ y: [0, -3, 0] }}
                       transition={{ duration: 0.45, repeat: Infinity, delay: 0 }}
                     />
                     <motion.span
-                      className="w-1.5 h-1.5 bg-rose-400 rounded-full"
+                      className="w-1.5 h-1.5 bg-white/60 rounded-full"
                       animate={{ y: [0, -3, 0] }}
                       transition={{ duration: 0.45, repeat: Infinity, delay: 0.15 }}
                     />
                     <motion.span
-                      className="w-1.5 h-1.5 bg-rose-400 rounded-full"
+                      className="w-1.5 h-1.5 bg-white/60 rounded-full"
                       animate={{ y: [0, -3, 0] }}
                       transition={{ duration: 0.45, repeat: Infinity, delay: 0.3 }}
                     />
@@ -587,7 +587,7 @@ export default function ChatBot() {
                   key={chip.label}
                   type="button"
                   onClick={() => sendQuery(chip.query)}
-                  className="whitespace-nowrap px-2.5 py-1 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 hover:border-rose-400/50 text-white/70 hover:text-white text-xs transition-all duration-200"
+                  className="whitespace-nowrap px-2.5 py-1 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/40 text-white/70 hover:text-white text-xs transition-all duration-200"
                 >
                   {chip.label}
                 </button>
@@ -603,12 +603,12 @@ export default function ChatBot() {
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={handleKeyPress}
                   placeholder="Ask Cherry about projects, skills..."
-                  className="flex-1 px-3.5 py-2.5 bg-white/5 border border-white/15 rounded-xl text-white text-sm placeholder:text-white/30 focus:border-rose-500 focus:outline-none transition-colors"
+                  className="flex-1 px-3.5 py-2.5 bg-white/5 border border-white/15 rounded-xl text-white text-sm placeholder:text-white/30 focus:border-white/50 focus:outline-none transition-colors"
                 />
                 <motion.button
                   onClick={handleSend}
                   disabled={!input.trim() || isTyping}
-                  className="p-2.5 bg-gradient-to-r from-rose-500 to-red-600 text-white rounded-xl disabled:opacity-30 disabled:cursor-not-allowed hover:shadow-lg hover:shadow-rose-500/20 transition-all"
+                  className="p-2.5 bg-white text-black rounded-xl disabled:opacity-30 disabled:cursor-not-allowed hover:bg-white/90 transition-all"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   aria-label="Send message"
